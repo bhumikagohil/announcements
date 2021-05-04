@@ -1,0 +1,47 @@
+{% include 'bootstrap-skeleton.html' %}
+
+{% load news_home %}
+
+{% load static %}
+
+{% block staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/corporate_announcements/announcements.css' %}" />
+{% endblock staticfiles %}
+
+{% block content_body %}
+<div class="header-container">
+    <h3 class="heading">Your Corporate Announcements</h3>
+</div>
+
+<div class="cards-container"></div>
+
+<script>
+
+    const endpoint = "/corpann/fetch/";
+
+    fetch(endpoint)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            const newCard = data.map(item => {
+                return `
+                    <div class="card">
+                    <h5 class="title"> ${item.title} </h5>
+                    <p class="time"> ${item.disseminated_time}</p>
+                    <hr/>
+                    <div class="summary">
+                        ${item.summary}
+                    </div>
+                    </div>
+                `
+            })
+            
+            document.querySelector(".cards-container").insertAdjacentHTML("afterbegin", newCard);
+        })
+        .catch(function (err) {
+            console.log('error: ' + err);
+        });
+
+</script>
+{% endblock %}
