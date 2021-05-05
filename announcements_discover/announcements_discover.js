@@ -8,7 +8,7 @@ const hostname = window.location.host;
 $(document).ready(function () {
   // Fetching Followed Companies
   fetchData(
-    `http://165.22.209.84/corpann/autocomplete/?search=chemical`,
+    `http://${hostname}/corpann/autocomplete/?search=chemical`,
     renderFollowedCompanies
   );
 
@@ -19,7 +19,7 @@ $(document).ready(function () {
       if (query.length >= min_query_length) {
         //   Fetching Autocomplete Sugguestions
         fetchData(
-          `http://165.22.209.84/corpann/autocomplete/?search=${query}`,
+          `http://${hostname}/corpann/autocomplete/?search=${query}`,
           renderAutocompleteItem
         );
       } else {
@@ -90,7 +90,7 @@ function createCard(name, id, text) {
 // Fetching Company Status
 
 function getCompanyStatus(name) {
-  // fetchData(`http://165.22.209.84/corpann/autocomplete/?search=${name}`, $("#status-button").html("Unfolllow"))
+  // fetchData(`http://${hostname}/corpann/autocomplete/?search=${name}`, $("#status-button").html("Unfolllow"))
 
   setTimeout(function () {
     $("#status-button").html("Unfollow");
