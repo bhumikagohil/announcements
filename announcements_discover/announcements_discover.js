@@ -9,6 +9,7 @@ $(document).ready(function () {
   // Fetching Followed Companies
   fetchData(
     `http://${hostname}/corpann/autocomplete/?search=chemical`,
+    // `https://${hostname}/corpann/api/company/following/`,
     renderFollowedCompanies
   );
 
@@ -44,7 +45,7 @@ function renderAutocompleteItem(data) {
     (item) => !company_cards_present.includes(item.scrip_id)
   );
 
-  var newItem = filtered_autocomplete_sugguestions
+  var new_autocomplete_item = filtered_autocomplete_sugguestions
     .map((item) => {
       return `
                     <li class="autocomplete-items" >
@@ -59,7 +60,7 @@ function renderAutocompleteItem(data) {
 
   document
     .querySelector(".autocomplete")
-    .insertAdjacentHTML("afterbegin", newItem);
+    .insertAdjacentHTML("afterbegin", new_autocomplete_item);
 }
 
 // Creating New Card
@@ -90,7 +91,7 @@ function createCard(name, id, text) {
 // Fetching Company Status
 
 function getCompanyStatus(name) {
-  // fetchData(`http://${hostname}/corpann/autocomplete/?search=${name}`, $("#status-button").html("Unfolllow"))
+   // fetchData(`http://165.22.209.84/corpann/autocomplete/?search=${name}`, $("#status-button").html("Unfolllow"))
 
   setTimeout(function () {
     $("#status-button").html("Unfollow");
