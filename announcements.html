@@ -7,17 +7,27 @@
 {% block staticfiles %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/corporate_announcements/announcements.css' %}" />
 {% endblock staticfiles %}
-
+<link rel="stylesheet" type="text/css" href="announcements.css" />
 {% block content_body %}
 <div class="header-container">
     <h3 class="heading">Your Corporate Announcements</h3>
 </div>
 
-<div class="cards-container"></div>
+<div class="cards-container">
+
+    <div class="card">
+        <h5 class="title"> ${item.title} </h5>
+        <p class="time"> ${item.disseminated_time}</p>
+        <hr/>
+        <div class="summary">
+            ${item.summary}
+        </div>
+        </div>
+</div>
 
 <script>
-
-    const endpoint = "/corpann/fetch/";
+    const hostname = window.location.host;
+    const endpoint = `http://${hostname}/corpann/api/fetch/announcements/`;
 
     fetch(endpoint)
         .then(function (response) {
@@ -36,7 +46,7 @@
                     </div>
                 `
             })
-            
+
             document.querySelector(".cards-container").insertAdjacentHTML("afterbegin", newCard);
         })
         .catch(function (err) {

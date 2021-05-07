@@ -4,12 +4,10 @@ var query,
 const min_query_length = 3;
 const hostname = window.location.host;
 
-
 $(document).ready(function () {
   // Fetching Followed Companies
   fetchData(
-    `http://${hostname}/corpann/autocomplete/?search=chemical`,
-    // `https://${hostname}/corpann/api/company/following/`,
+    `http://${hostname}/corpann/api/company/following/`,
     renderFollowedCompanies
   );
 
@@ -20,7 +18,7 @@ $(document).ready(function () {
       if (query.length >= min_query_length) {
         //   Fetching Autocomplete Sugguestions
         fetchData(
-          `http://${hostname}/corpann/autocomplete/?search=${query}`,
+          `http://${hostname}/corpann/api/autocomplete/?search=${query}`,
           renderAutocompleteItem
         );
       } else {
@@ -41,6 +39,7 @@ function renderFollowedCompanies(data) {
 // Autocomplete Items
 
 function renderAutocompleteItem(data) {
+
   var filtered_autocomplete_sugguestions = data.filter(
     (item) => !company_cards_present.includes(item.scrip_id)
   );
@@ -91,11 +90,18 @@ function createCard(name, id, text) {
 // Fetching Company Status
 
 function getCompanyStatus(name) {
-   // fetchData(`http://165.22.209.84/corpann/autocomplete/?search=${name}`, $("#status-button").html("Unfolllow"))
+  fetchData(
+    `http://${hostname}/corpann/api/follow/?company=${name}`,
+    checkStatus
+  );
+}
 
-  setTimeout(function () {
+function checkStatus(data) {
+  if (data.company_status === "Confirmed") {
     $("#status-button").html("Unfollow");
-  }, 3000);
+  } else {
+    $("#status-button").html("Follow").css("background-color", "#4caf50");
+  }
 }
 
 // Removing Card on Unfollow
