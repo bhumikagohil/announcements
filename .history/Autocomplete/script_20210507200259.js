@@ -2,12 +2,12 @@ var query,
   company_cards_present = [];
 
 const min_query_length = 3;
-const hostname = window.location.host;
+const hostname = "165.22.217.142";
 
 $(document).ready(function () {
   // Fetching Followed Companies
   fetchData(
-    `http://${hostname}/corpann/api/company/following/`,
+    `https://165.22.217.142/corpann/api/company/following/`,
     renderFollowedCompanies
   );
 
@@ -39,6 +39,8 @@ function renderFollowedCompanies(data) {
 // Autocomplete Items
 
 function renderAutocompleteItem(data) {
+  console.log(data);
+
   var filtered_autocomplete_sugguestions = data.filter(
     (item) => !company_cards_present.includes(item.scrip_id)
   );

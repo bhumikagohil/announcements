@@ -39,6 +39,7 @@ function renderFollowedCompanies(data) {
 // Autocomplete Items
 
 function renderAutocompleteItem(data) {
+
   var filtered_autocomplete_sugguestions = data.filter(
     (item) => !company_cards_present.includes(item.scrip_id)
   );

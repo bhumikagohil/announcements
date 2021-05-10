@@ -6,8 +6,6 @@
 
 .heading {
   text-align: center;
-  font-size: 22px;
-
 }
 
 /* Card */
@@ -27,7 +25,7 @@
 
 .title {
   font-weight: bolder;
-  font-size: 20px;
+  font-size: 22px;
   margin-block: 0;
   color: #4b0a0a;
 }
@@ -50,19 +48,16 @@ hr {
 .summary {
   overflow-x: auto;
   margin-top: 15px;
-  font-size: 16px;
-
 }
 
-/* Media Queries */
 @media only screen and (max-width: 768px) {
   .heading {
-    font-size: 18px;
+    font-size: 14px;
   }
   .title {
     font-size: 16px;
   }
   .summary {
-    font-size: 14px;
+    font-size: 10px;
   }
 }

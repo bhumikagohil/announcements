@@ -7,49 +7,44 @@
 {% block staticfiles %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/corporate_announcements/announcements.css' %}" />
 {% endblock staticfiles %}
-
 {% block content_body %}
-
-<!-- Header -->
 <div class="header-container">
     <h3 class="heading">Your Corporate Announcements</h3>
 </div>
 
-<!-- Cards -->
 <div class="cards-container">
+
+    {% comment %} <div class="card">
+        <h5 class="title"> ${item.title} </h5>
+        <p class="time"> ${item.disseminated_time}</p>
+        <hr />
+        <div class="summary">
+            ${item.summary}
+        </div>
+    </div> {% endcomment %}
 </div>
 
 {% comment %}
-<script src="{% static 'js/corporate_announcements/announcements.js' %}"></script>
-{% endcomment %}
-
+<script src="{% static 'js/corporate_announcements/announcements.js' %}"></script> {% endcomment %}
 <script>
     const hostname = window.location.host;
     const endpoint = `http://${hostname}/corpann/api/fetch/announcements/`;
-
-    // Fetch Announcements
 
     fetch(endpoint)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-
-            // Create New Card
             const newCard = data.data.map(item => {
                 return `
-                <div class="card" id=${item.news_id}>
-                    <h5 class="title">
-                         ${item.title} 
-                    </h5>
-                    <p class="time"> 
-                        ${item.disseminated_time}
-                    </p>
+                    <div class="card">
+                    <h5 class="title"> ${item.title} </h5>
+                    <p class="time"> ${item.disseminated_time}</p>
                     <hr/>
                     <div class="summary">
                         ${item.summary}
                     </div>
-                </div>
+                    </div>
                 `
             })
 

@@ -34,21 +34,19 @@
             return response.json();
         })
         .then(function (data) {
-
-            // Create New Card
             const newCard = data.data.map(item => {
                 return `
                 <div class="card" id=${item.news_id}>
                     <h5 class="title">
-                         ${item.title} 
+                        ${item.author} 
                     </h5>
-                    <p class="time"> 
-                        ${item.disseminated_time}
+                    <p class="time">
+                        ${item.width}
                     </p>
                     <hr/>
-                    <div class="summary">
-                        ${item.summary}
-                    </div>
+                    <p class="summary">
+                        ${item.url}
+                    </p>
                 </div>
                 `
             })

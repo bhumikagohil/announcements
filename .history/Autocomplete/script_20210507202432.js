@@ -2,14 +2,18 @@ var query,
   company_cards_present = [];
 
 const min_query_length = 3;
-const hostname = window.location.host;
+const hostname = "165.22.217.142";
+
+window.addEventListener('load', function(){
+  fetchData(
+    `https://165.22.217.142/corpann/api/company/following/`,
+    renderFollowedCompanies
+  );
+})
 
 $(document).ready(function () {
   // Fetching Followed Companies
-  fetchData(
-    `http://${hostname}/corpann/api/company/following/`,
-    renderFollowedCompanies
-  );
+  
 
   //Get Value from Input
   $(document).ready(function () {
@@ -39,6 +43,7 @@ function renderFollowedCompanies(data) {
 // Autocomplete Items
 
 function renderAutocompleteItem(data) {
+
   var filtered_autocomplete_sugguestions = data.filter(
     (item) => !company_cards_present.includes(item.scrip_id)
   );

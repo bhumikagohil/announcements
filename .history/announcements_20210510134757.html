@@ -34,8 +34,6 @@
             return response.json();
         })
         .then(function (data) {
-
-            // Create New Card
             const newCard = data.data.map(item => {
                 return `
                 <div class="card" id=${item.news_id}>

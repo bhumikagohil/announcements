@@ -1,4 +1,3 @@
-/* Header */
 .header-container {
   width: 80%;
   margin: 30px auto;
@@ -6,30 +5,32 @@
 
 .heading {
   text-align: center;
-  font-size: 22px;
-
 }
 
-/* Card */
 .cards-container {
   width: 100%;
 }
 
 .card {
-  padding: 15px;
-  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
   width: 80%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border: 1px solid #d3d3d3;
   border-radius: 5px;
-  margin: auto;
+  margin: 7px auto;
   margin-bottom: 10px;
 }
 
 .title {
   font-weight: bolder;
-  font-size: 20px;
+  font-size: 22px;
   margin-block: 0;
-  color: #4b0a0a;
+  color: #ffb535;
 }
 
 hr {
@@ -50,19 +51,4 @@ hr {
 .summary {
   overflow-x: auto;
   margin-top: 15px;
-  font-size: 16px;
-
-}
-
-/* Media Queries */
-@media only screen and (max-width: 768px) {
-  .heading {
-    font-size: 18px;
-  }
-  .title {
-    font-size: 16px;
-  }
-  .summary {
-    font-size: 14px;
-  }
 }
