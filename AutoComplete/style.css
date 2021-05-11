@@ -60,7 +60,7 @@ input[type="text" i] {
   font-size: 14px;
 }
 
-#add-button {
+.add-button {
   width: 50px;
   height: 26px;
   text-align: center;
@@ -85,7 +85,7 @@ input[type="text" i] {
   align-items: center;
 }
 
-#status-button {
+.status-button {
   position: relative;
   border: none;
   color: white;

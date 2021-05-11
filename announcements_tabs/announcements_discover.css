@@ -3,7 +3,6 @@
 }
 
 .container {
-  width: 80%;
   margin: 30px auto;
 }
 
@@ -72,7 +71,8 @@ input[type="text" i] {
 }
 
 /* Card  */
-.card {
+.discover_card {
+  width:100%;
   padding: 2% 4%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border: 1px solid #d3d3d3;
@@ -85,7 +85,7 @@ input[type="text" i] {
   align-items: center;
 }
 
-#status-button {
+.status-button {
   position: relative;
   border: none;
   color: white;

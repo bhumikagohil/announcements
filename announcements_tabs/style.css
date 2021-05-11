@@ -1,0 +1,43 @@
+[data-tab-content] {
+  display: none;
+}
+
+.active[data-tab-content] {
+  display: block;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tab {
+  cursor: pointer;
+  padding: 5px;
+  font-size: large;
+  font-weight: bold;
+}
+
+.tab.active {
+  color: #443ac8;
+  border-bottom: 3px solid #443ac8;
+}
+
+.tab:hover {
+  color: #443ac8;
+}
+
+
+/* Media Queries */
+@media only screen and (max-width: 768px) {
+  .tab {
+    font-size: 10px;
+  }
+  .tab.active {
+    border-bottom: 2px solid #443ac8;
+  }
+}
+
