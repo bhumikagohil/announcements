@@ -1,27 +1,25 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="my_announcements.css" />
-
-</head>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<script src="my_announcements.js" defer></script>
-
-
-
 <body>
     <!-- Header -->
-<div class="header-container">
-    <h3 class="heading">Your Corporate Announcements</h3>
-</div>
+    <div class="header-container">
+        <h3 class="heading">Your Corporate Announcements</h3>
+    </div>
 
-<!-- Cards -->
-<div class="cards-container">
-</div>
+    <!-- Cards -->
+    <div class="cards-container">
+        <!-- REMOVE -->
+        <div class="card" id=${item.news_id}>
+            <h5 class="title">
+                 ${item.title} 
+            </h5>
+            <p class="time"> 
+                ${item.disseminated_time}
+            </p>
+            <hr/>
+            <div class="summary">
+                ${item.summary}
+            </div>
+        </div>
+    </div>
+    <script src="my_announcements.js" defer></script>
+
 </body>
-
-</html>

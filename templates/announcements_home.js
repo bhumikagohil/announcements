@@ -1,3 +1,4 @@
+// ANNOUNCEMENTS HOME
 const tabs = document.querySelectorAll("[data-tab-target]");
 const tabContents = document.querySelectorAll("[data-tab-content]");
 
@@ -15,23 +16,23 @@ tabs.forEach((tab) => {
   });
 });
 
-// ANNOUNCEMENTS
+//MY ANNOUNCEMENTS
 
-const hostname = "165.22.217.142";
+const hostname = window.location.host;
 
-const endpoint = `http://localhost:8000/null`;
+const endpoint = `http://${hostname}/corpann/api/fetch/announcements/`;
 
 fetch(endpoint)
   .then(function (response) {
     return response.json();
   })
   .then(function (response) {
-    if (response.length < 1) {
+    if (response.data.length < 1) {
       $(".announcements-card").html(
         "You haven't added any companies yet.Please click on discover announcements to add companies to receive corporate announcements "
       );
     } else {
-      const newCard = response.map((item) => {
+      const newCard = response.data.map((item) => {
         return `
                       <div class="announcements-card">
                           <h5 class="title"> ${item.title} </h5>
@@ -103,12 +104,10 @@ function renderAutocompleteItem(data) {
   var new_autocomplete_item = filtered_autocomplete_sugguestions
     .map((item) => {
       return `
-                      <li class="autocomplete-items" >
-                      <span  onclick="con('${item.company_name}','${item.scrip_id}')>
+                      <li class="autocomplete-items"  onclick="createCard('${item.company_name}','${item.scrip_id}')>
                          <p class="autocomplete-title"> ${item.company_name}</p>
                           <button id="${item.scrip_id}" class="add-button" onclick="createCard('${item.company_name}','${item.scrip_id}')">Add</button>
-                     </span>
-                          </li>
+                      </li>
                   `;
     })
     .join("\n");
