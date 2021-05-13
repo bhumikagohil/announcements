@@ -79,12 +79,13 @@ $(document).ready(function () {
 
 // Fetching Followed Companies Once
 
-$("#discover-tab").one("click", function () {
+$('#discover-tab').one("click", function () {
   fetchData(
     `http://${hostname}/corpann/api/company/following/`,
     renderFollowedCompanies
   );
 });
+
 
 // Render Followed Companies
 

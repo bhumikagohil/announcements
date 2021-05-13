@@ -1,4 +1,3 @@
-// ANNOUNCEMENTS HOME
 const tabs = document.querySelectorAll("[data-tab-target]");
 const tabContents = document.querySelectorAll("[data-tab-content]");
 
@@ -16,23 +15,23 @@ tabs.forEach((tab) => {
   });
 });
 
-//MY ANNOUNCEMENTS
+// ANNOUNCEMENTS
 
-const hostname = window.location.host;
+const hostname = "165.22.217.142";
 
-const endpoint = `http://${hostname}/corpann/api/fetch/announcements/`;
+const endpoint = `http://localhost:8000/null`;
 
 fetch(endpoint)
   .then(function (response) {
     return response.json();
   })
   .then(function (response) {
-    if (response.data.length < 1) {
+    if (response.length < 1) {
       $(".announcements-card").html(
         "You haven't added any companies yet.Please click on discover announcements to add companies to receive corporate announcements "
       );
     } else {
-      const newCard = response.data.map((item) => {
+      const newCard = response.map((item) => {
         return `
                       <div class="announcements-card">
                           <h5 class="title"> ${item.title} </h5>
@@ -77,18 +76,23 @@ $(document).ready(function () {
   });
 });
 
-// Fetching Followed Companies Once
+// Fetching Followed Companies
+$('#discover-tab').one("click", function () {
+  // $("#loadingMessage").css('padding-top', '6%');
+  console.log("clicked")
+});
 
-$("#discover-tab").one("click", function () {
+function fetchFollowedCompanies() {
   fetchData(
     `http://${hostname}/corpann/api/company/following/`,
     renderFollowedCompanies
   );
-});
+}
 
 // Render Followed Companies
 
 function renderFollowedCompanies(data) {
+  console.log("clicked here")
   data.map((item) => {
     createCard(item.company_name, item.scrip_id, "Unfollow");
   });
@@ -104,10 +108,12 @@ function renderAutocompleteItem(data) {
   var new_autocomplete_item = filtered_autocomplete_sugguestions
     .map((item) => {
       return `
-                      <li class="autocomplete-items"  onclick="createCard('${item.company_name}','${item.scrip_id}')">
+                      <li class="autocomplete-items" >
+                      <span  onclick="con('${item.company_name}','${item.scrip_id}')">
                          <p class="autocomplete-title"> ${item.company_name}</p>
                           <button id="${item.scrip_id}" class="add-button" onclick="createCard('${item.company_name}','${item.scrip_id}')">Add</button>
-                      </li>
+                     </span>
+                          </li>
                   `;
     })
     .join("\n");

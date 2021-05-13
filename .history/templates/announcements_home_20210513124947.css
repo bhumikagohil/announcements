@@ -46,10 +46,6 @@
   margin: 20px auto;
 }
 
-.announcements-home {
-  margin-top: 0px;
-}
-
 .heading {
   text-align: center;
 }
@@ -91,6 +87,7 @@ hr {
   margin-top: 15px;
   font-size: 16px;
 }
+
 
 /****** DISCOVER ANNOUNCEMENTS ******/
 
@@ -169,6 +166,7 @@ input[type="text" i] {
   z-index: 2;
 }
 
+
 .discover-card {
   padding: 4%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -244,7 +242,7 @@ input[type="text" i] {
 
 @media only screen and (max-width: 768px) {
   .heading {
-    font-size: 18px;
+    font-size: 20px;
   }
   .title {
     font-size: 16px;
@@ -252,9 +250,9 @@ input[type="text" i] {
   .summary {
     font-size: 14px;
   }
-  .card-title {
-    font-size: 14px;
-    margin-top: auto;
-    margin-bottom: auto;
-  }
+  .card-title{
+   font-size: 14px;
+   margin-top:auto;
+   margin-bottom:auto
+}
 }

@@ -77,14 +77,14 @@ $(document).ready(function () {
   });
 });
 
-// Fetching Followed Companies Once
+// Fetching Followed Companies
 
-$("#discover-tab").one("click", function () {
+function fetchFollowedCompanies() {
   fetchData(
     `http://${hostname}/corpann/api/company/following/`,
     renderFollowedCompanies
   );
-});
+}
 
 // Render Followed Companies
 
@@ -104,7 +104,7 @@ function renderAutocompleteItem(data) {
   var new_autocomplete_item = filtered_autocomplete_sugguestions
     .map((item) => {
       return `
-                      <li class="autocomplete-items"  onclick="createCard('${item.company_name}','${item.scrip_id}')">
+                      <li class="autocomplete-items"  onclick="createCard('${item.company_name}','${item.scrip_id}')>
                          <p class="autocomplete-title"> ${item.company_name}</p>
                           <button id="${item.scrip_id}" class="add-button" onclick="createCard('${item.company_name}','${item.scrip_id}')">Add</button>
                       </li>

@@ -43,11 +43,7 @@
 
 .container {
   width: 100%;
-  margin: 20px auto;
-}
-
-.announcements-home {
-  margin-top: 0px;
+  margin: 30px auto;
 }
 
 .heading {
@@ -82,15 +78,28 @@ hr {
 }
 
 .time {
-  font-size: 14px;
-  color: #858080;
-}
-
-.summary {
-  overflow-x: auto;
-  margin-top: 15px;
-  font-size: 16px;
-}
+    font-size: 14px;
+    color: #858080;
+  }
+  
+  .summary {
+    overflow-x: auto;
+    margin-top: 15px;
+    font-size: 16px;
+  }
+  
+  /* Media Queries */
+  @media only screen and (max-width: 768px) {
+    .heading {
+      font-size: 18px;
+    }
+    .title {
+      font-size: 16px;
+    }
+    .summary {
+      font-size: 14px;
+    }
+  }
 
 /****** DISCOVER ANNOUNCEMENTS ******/
 
@@ -168,9 +177,8 @@ input[type="text" i] {
   margin-top: 50px;
   z-index: 2;
 }
-
 .discover-card {
-  padding: 4%;
+  padding: 2% 4%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border: 1px solid #d3d3d3;
   border-radius: 5px;
@@ -239,22 +247,5 @@ input[type="text" i] {
 @media only screen and (min-width: 1440px) {
   #input-field {
     width: 75%;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .heading {
-    font-size: 18px;
-  }
-  .title {
-    font-size: 16px;
-  }
-  .summary {
-    font-size: 14px;
-  }
-  .card-title {
-    font-size: 14px;
-    margin-top: auto;
-    margin-bottom: auto;
   }
 }

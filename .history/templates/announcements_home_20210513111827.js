@@ -77,14 +77,14 @@ $(document).ready(function () {
   });
 });
 
-// Fetching Followed Companies Once
+// Fetching Followed Companies
 
-$("#discover-tab").one("click", function () {
+function fetchFollowedCompanies() {
   fetchData(
     `http://${hostname}/corpann/api/company/following/`,
     renderFollowedCompanies
   );
-});
+}
 
 // Render Followed Companies
 
