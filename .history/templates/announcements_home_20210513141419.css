@@ -55,17 +55,14 @@
 }
 
 /****** MY ANNOUNCEMENTS ******/
-.link {
-  text-decoration: none;
-}
-.pdf-icon {
-  width: 25px;
-  height: 28px;
+.pdf-icon{
+   width: 25px;
+   height: 28px;
 }
 
 .title {
   color: #0089d0;
-  display: inline;
+  display: inline; 
 }
 
 .announcements-card {
@@ -264,9 +261,5 @@ input[type="text" i] {
     font-size: 14px;
     margin-top: auto;
     margin-bottom: auto;
-  }
-  .pdf-icon {
-    width: 20px;
-    height: 22px;
   }
 }

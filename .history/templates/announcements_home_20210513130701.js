@@ -33,13 +33,9 @@ fetch(endpoint)
       );
     } else {
       const newCard = response.data.map((item) => {
-        //NEED TO UPDATE IMAGE SOURCE HERE
         return `
-                      <div class="announcements-card" id="${news_id}">
-                          <a href="${attachment_link}" class="link">
-                            <img src="{% static 'images/corporate_announcements/pdf_icon.png' %}" alt="${item.title}" class="pdf-icon">
-                            <h5 class="title"> ${item.title} </h5>
-                          </a>
+                      <div class="announcements-card">
+                          <h5 class="title"> ${item.title} </h5>
                           <p class="time"> ${item.disseminated_time}</p>
                           <hr/>
                           <div class="summary">
