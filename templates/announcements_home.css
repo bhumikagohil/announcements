@@ -55,9 +55,17 @@
 }
 
 /****** MY ANNOUNCEMENTS ******/
+
+#loading-image {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
 .link {
   text-decoration: none;
 }
+
 .pdf-icon {
   width: 25px;
   height: 28px;
@@ -66,6 +74,12 @@
 .title {
   color: #0089d0;
   display: inline;
+}
+
+#announcements-empty-case {
+  margin: 35px 23px 23px 23px;
+  font-weight: bold;
+  color: #838383;
 }
 
 .announcements-card {
@@ -245,7 +259,8 @@ input[type="text" i] {
   }
 }
 @media only screen and (min-width: 1440px) {
-  #input-field {
+  #input-field,
+  .autocomplete {
     width: 75%;
   }
 }

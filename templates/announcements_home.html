@@ -19,9 +19,10 @@
 <div class="container announcements-home">
     <!-- ANNOUNCEMENTS TABS -->
     <ul class="tabs">
-        <li data-tab-target="#my-announcements" class="active tab">My Announcements</li>
+        <li data-tab-target="#my-announcements" id="my-announcements-tab" class="active tab"
+            onclick="fetchAllAnnouncements()">My Announcements</li>
         <li data-tab-target="#discover-announcements" class="tab" id="discover-tab">
-            Discover Announcements
+            Add/Remove Companies
         </li>
     </ul>
 
@@ -29,26 +30,25 @@
 
         <!-- MY ANNOUNCEMENTS  -->
         <div id="my-announcements" data-tab-content class="active">
-            <div class="container">
-                <h3 class="heading">Your Corporate Announcements</h3>
+
+            <div>
+                <p id="announcements-empty-case">
+                </p>
             </div>
-
             <div class="container" id="announcements-cards-container">
-
+                <img id="loading-image" src="loading_logo.gif" style="display:none;" />
             </div>
 
         </div>
 
         <!-- DISCOVER  ANNOUNCEMENTS -->
         <div id="discover-announcements" data-tab-content>
-            <!-- Heading -->
-            <div class="container">
-                <h3 class="heading">Discover Corporate Announcements</h3>
-            </div>
+
             <!-- Autocomplete Bar -->
             <div class="container">
                 <form autocomplete="off" class="form">
-                    <input id="input-field" placeholder="Search companies" type="text">
+                    <input id="input-field"
+                        placeholder="Search companies and click Add to receive corporate announcements" type="text">
                     <ul class="autocomplete"></ul>
                 </form>
             </div>

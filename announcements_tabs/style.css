@@ -21,7 +21,6 @@
   font-weight: bold;
 }
 
-
 .tab.active {
   color: #443ac8;
   border-bottom: 3px solid #443ac8;
@@ -51,6 +50,12 @@
 }
 
 /*  ANNOUNCEMENTS */
+
+#loading-image {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
 
 .title {
   color: #0089d0;

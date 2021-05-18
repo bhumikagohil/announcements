@@ -20,43 +20,60 @@ tabs.forEach((tab) => {
 
 const hostname = window.location.host;
 
-const endpoint = `http://${hostname}/corpann/api/fetch/announcements/`;
+$(document).ready(function () {
+  fetchAllAnnouncements();
+});
 
-fetch(endpoint)
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (response) {
-    if (response.data.length < 1) {
-      $(".announcements-card").html(
-        "You haven't added any companies yet.Please click on discover announcements to add companies to receive corporate announcements "
-      );
-    } else {
-      const newCard = response.data.map((item) => {
-        //NEED TO UPDATE IMAGE SOURCE HERE
-        return `
-                      <div class="announcements-card" id="${news_id}">
-                          <a href="${attachment_link}" class="link">
-                            <img src="{% static 'images/corporate_announcements/pdf_icon.png' %}" alt="${item.title}" class="pdf-icon">
+$("#my-announcements-tab").click(() => {
+  $("#announcements-cards-container").empty();
+  $("#loading-image").show();
+  // fetchAllAnnouncements();
+});
+
+function fetchAllAnnouncements() {
+  const endpoint = `http://${hostname}/corpann/api/fetch/announcements/`;
+
+  fetch(endpoint)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (response) {
+      $("#loading-image").hide();
+      if (response.data.length < 1) {
+        $("#announcements-empty-case").html(
+          'You do not have any announcements yet. Please add companies you want to receive corporate announcements in the "Add Remove Companies" tab'
+        );
+      } else {
+        $("#announcements-empty-case").empty();
+        const newCard = response.data.map((item) => {
+          //NEED TO UPDATE IMAGE SOURCE HERE
+          const dateTime = new Date(item.disseminated_time);
+
+          dateTimeDisplayString = dateTime.toLocaleString("en-in");
+          return `
+                      <div class="announcements-card" id="${item.news_id}">
+                          <a href="${item.attachment_link}" class="link" target="_blank">
+                            <img src="/static/images/corporate_announcements/pdf_icon.png" alt="${item.title}" class="pdf-icon"/>
                             <h5 class="title"> ${item.title} </h5>
                           </a>
-                          <p class="time"> ${item.disseminated_time}</p>
+                          <p class="time"> ${dateTimeDisplayString}</p>
                           <hr/>
                           <div class="summary">
                               ${item.summary}
                           </div>
                       </div>
+                      </div>
                   `;
-      });
+        });
 
-      document
-        .querySelector("#announcements-cards-container")
-        .insertAdjacentHTML("afterbegin", newCard);
-    }
-  })
-  .catch(function (err) {
-    console.log("error: " + err);
-  });
+        qSelector = document.querySelector("#announcements-cards-container");
+        qSelector.insertAdjacentHTML("afterbegin", newCard);
+      }
+    })
+    .catch(function (err) {
+      console.log("error: " + err);
+    });
+}
 
 // DISCOVER ANNOUNCEMENTS
 
@@ -110,7 +127,7 @@ function renderAutocompleteItem(data) {
       return `
                       <li class="autocomplete-items"  onclick="createCard('${item.company_name}','${item.scrip_id}')">
                          <p class="autocomplete-title"> ${item.company_name}</p>
-                          <button id="${item.scrip_id}" class="add-button" onclick="createCard('${item.company_name}','${item.scrip_id}')">Add</button>
+                          <button id="${item.scrip_id}" class="add-button">Add</button>
                       </li>
                   `;
     })
