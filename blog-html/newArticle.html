@@ -1,0 +1,77 @@
+<div class="container">
+    <div class="row">
+
+        {% for article_map in articles_info_map.articles %}
+
+        <div class="card mb-4">
+            <div class="row">
+                <!-- CARD HEADER -->
+                <div class="col-md-4 order-md-1 p-0">
+                    <a class="text-decoration-none" target="__blank" href="{{ article_map.article_obj.url }}">
+
+                        {% if article_map.article_obj.urlToImage %}
+                        <img src="{{ article_map.article_obj.urlToImage }}" class="card-img" alt="Image">
+                        {% else %}
+                        {% if article_map.alternate_img %}
+                        {% with article_map.alternate_img as image_static %}
+                        <img src="{{image_static}}" class="card-img" alt="Image">
+                        {% endwith %}
+                        {% endif %}
+                        {% endif %}
+
+                        <div class="card-img-overlay">
+                            {% if article_map.article_obj.source and article_map.article_obj.source.name %}
+                            <p class="btn btn-light btn-sm">
+                                {{article_map.article_obj.source.name}}
+                            </p>
+                            {% else %}
+                            {% if article_map.alternate_source %}
+                            <p class="btn btn-light btn-sm">
+                                {{article_map.alternate_source}}
+                            </p>
+                            {% endif %}
+                            {% endif %}
+                        </div>
+                    </a>
+                </div>
+                <!-- CARD BODY -->
+                <div class="col-md-8 order-md-2">
+                    <div class="card-body">
+
+                        {% for article_topic in article_map.related_topics %}
+                        <a href="{% url 'news:get_everything_by_query' %}?query={{article_topic|urlencode}}"
+                            class="text-decoration-none">
+                            <h4 class="card-title">{{ article_topic }}</h4>
+                        </a>
+                        {% endfor %}
+
+                        <a target="__blank" href="{{ article_map.article_obj.url }}" class="">
+                            <p class="card-text">
+                                {{ article_map.article_obj.title }}
+                            </p>
+                        </a>
+
+                        <a href="#" class="btn btn-info mt-3 px-2 py-1">Share Blog</a>
+
+                    </div>
+                    <!-- CARD FOOTER -->
+                    <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
+                        {% if article_map.article_obj.source and article_map.article_obj.source.name %}
+                        <p class="publishedAt">
+                            {{article_map.article_obj.source.name}}
+                        </p>
+                        {% else %}
+                        {% if article_map.alternate_source %}
+                        <p class="publishedAt">
+                            {{article_map.alternate_source}}
+                        </p>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>

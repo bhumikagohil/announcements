@@ -1,0 +1,112 @@
+<div class="infinite-container">
+    {% for article_map in articles_info_map.articles %}
+    <div class="infinite-item">
+        <div class="row">
+            <div class="card mb-3 border-0 shadow-sm" style="box-shadow: 0 0 2px 2px grey; width:100%;">
+                <div class="row no-gutters">
+                    <div class="col-md-3 col-sm-pull-9 order-md-2">
+                        {% if article_map.article_obj.urlToImage %}
+                        <img src="{{ article_map.article_obj.urlToImage }}"
+                            class="borders-0 card-img-top px-3 pb-4 my-1" alt="Image">
+                        {% else %}
+                        {% if article_map.alternate_img %}
+                        {% with article_map.alternate_img as image_static %}
+                        <img src="{{image_static}}" class="borders-0 card-img-top px-3 pb-4 my-1" alt="Image">
+                        {% endwith %}
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-9 col-sm-push-3  order-md-1">
+                        <div class="card-body">
+                            {% comment %} {% for article_topic in article_topics %}
+
+                            <a href="{% url 'news:get_everything_by_query' %}?query={{article_topic.name|urlencode}}">
+                                <h5 class="font-weight-bold d-inline text-capitalize" style="color: #ef073e;">
+                                    {{ article_topic }} {% if forloop.last %}{% else %}|{% endif %}
+                                </h5>
+                            </a>
+
+                            {% endfor %} {% endcomment %}
+
+                            {% for article_topic in article_map.related_topics %}
+                            <a href="{% url 'news:get_everything_by_query' %}?query={{article_topic|urlencode}}"
+                                class="">
+                                <h6 class="font-weight-bold d-inline text-uppercase" style="color: #ef073e;">
+                                    {{ article_topic }} {% if forloop.last %}{% else %}|{% endif %}</h6>
+                            </a>
+                            {% endfor %}
+                            <a target="__blank" href="{{ article_map.article_obj.url }}" class="">
+                                <h5 class="card-title font-weight-bold" style="color: #404145;">{{
+                                    article_map.article_obj.title }}</h5>
+                            </a>
+                            {% comment %}
+                            <!-- <p class="card-text d-inline">Article by : {{ article.author }}</p> -->
+                            {% endcomment %}
+                            {% if article_map.article_obj.source and article_map.article_obj.source.name
+                            %}
+                            <p class="card-text d-inline"><small class="text-muted">{{
+                                    article_map.article_obj.source.name}}&nbsp;&nbsp;&nbsp;&nbsp; {{
+                                    article_map.article_obj.publishedAt|format_my_date_string }}</small>
+                            </p>
+                            {% else %}
+                            {% if article_map.alternate_source %}
+                            <p class="card-text d-inline"><small class="text-muted">{{
+                                    article_map.alternate_source}}&nbsp;&nbsp;&nbsp;&nbsp; {{
+                                    article_map.article_obj.publishedAt|format_my_date_string }}</small>
+                            </p>
+                            {% endif %}
+                            {% endif %}
+                            {% comment %} <p class="card-text"><small class="text-muted">Published date
+                                    and time : </small></p> {% endcomment %}
+                            <div class="mb-2">
+                                <!-- <div class="collapse" id="collapseContent{{forloop.counter0}}">
+          
+            <p class="card-text" style="color: #0c0c0c;">{{ article_map.article_obj.description}}</p>
+
+            <a target="__blank" href="{{ article_map.article_obj.url }}" class="">
+              <p class="font-weight-bolder card-text text-primary" 
+              {% comment %} style="color: #254dfd;" {% endcomment %}
+              >Read Full Article</p></a>
+        </div> -->
+
+                                <!-- <a class="contentCollapsed text-secondary" role="button" data-toggle="collapse" href="#collapseContent{{forloop.counter0}}" 
+        aria-expanded="false" aria-controls="collapseContent{{forloop.counter0}}">more</a> -->
+
+                                <a class="text-secondary" target="__blank"
+                                    href="{{ article_map.article_obj.url }}">more</a>
+
+                            </div>
+
+                            <div class="d-flex justify-content-left">
+                                <a class="dv-collapse">
+                                    <img class="img-fluid" src="{% static 'images/news/share_logo.png' %}" alt="Share"
+                                        style="height:20px;" />
+                                </a>
+
+                                <div class="ml-1 dv-collapse-next">
+                                    <div class="">
+                                        <a class="social-share-mobile-only ml-1"
+                                            href="whatsapp://send?text={{article_map.article_obj.url}}%0a%0aKeep updated on '{{article_map.related_topics.0|lower}}' at {{request.get_host}}/follow/{{article_map.related_topics.0|replace_space_with_plus}}"
+                                            data-action="share/whatsapp/share">
+                                            <img class="img-fluid"
+                                                src="{% static 'images/news/whatsapp_logo_resized.png' %}" alt="Share"
+                                                style="height:20px;" /></a>
+
+                                        <a target="__blank" class="ml-1"
+                                            href="https://twitter.com/intent/tweet?text={{article_map.article_obj.url}}%0a{{article_map.article_obj.title}}%0a%0aKeep updated on '{{article_map.related_topics.0|lower}}' at {{request.get_host}}/follow/{{article_map.related_topics.0|replace_space_with_plus}}"
+                                            class="twitter-share-button" data-show-count="false">
+                                            <img class="img-fluid" src="{% static 'images/news/twitter_logo.png' %}"
+                                                alt="Tweet" style="height:20px;" /></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>

@@ -1,0 +1,18 @@
+.card-img {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  height: 100%;
+}
+
+.card-title {
+  margin-bottom: 0.3rem;
+  color: black;
+}
+
+.card-text {
+  color: rgb(70, 68, 68);
+}
+
+.card-footer {
+  font-size: 0.8rem;
+}
