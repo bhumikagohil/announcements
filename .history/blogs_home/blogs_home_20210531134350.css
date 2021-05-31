@@ -1,0 +1,10 @@
+.tab-panel {
+  display: none;
+  background-color: #eee;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.tab-panel.active {
+  display: block;
+}

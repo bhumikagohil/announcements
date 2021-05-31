@@ -1,0 +1,10 @@
+.tab-content {
+  display: none;
+  background-color: #eee;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.tab-content.active {
+  display: block;
+}
